@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SalsaShaker – Corsi</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--coral:#f38882;--red:#e0121b;--blue:#1f4e8c;--ink:#1c1416;--muted:#6a5a5d;--line:#ecd9d6;--paper:#fffaf8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 "Figtree",system-ui,sans-serif}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.hero{background:var(--coral);text-align:center;padding:28px 20px 20px}
+.hero img{width:min(380px,78vw);height:auto;display:block;margin:0 auto}
+.hero p{margin:0;color:#fff;font:italic 500 clamp(1.4rem,4vw,2rem)/1.2 "Fraunces",Georgia,serif;text-shadow:0 2px 0 rgba(150,10,15,.35)}
+.wrap{max-width:760px;margin:0 auto;padding:40px 20px 56px}
+h1{font:600 1.7rem/1.2 "Fraunces",Georgia,serif;margin:0 0 6px}
+.intro{color:var(--muted);margin:0 0 24px}
+.corsi{list-style:none;margin:0;padding:0;border-top:3px solid var(--red)}
+.corsi a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 4px;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+.corsi a:hover{background:#fff}
+.corsi a:hover .nome{color:var(--red)}
+.nome{font:600 1.6rem/1.2 "Fraunces",Georgia,serif}
+.desc{display:block;color:var(--muted);margin-top:4px}
+.vai{flex:none;font-weight:600;color:var(--blue)}
+footer{text-align:center;padding:0 20px 40px}
+footer img{width:180px;height:auto}
+footer p{margin:4px 0 0;color:var(--muted);font-size:.95rem}
+</style>
+</head>
+<body>
+<header class="hero">
+  <img src="logo-colore.jpg" alt="SalsaShaker">
+</header>
+
+<main class="wrap">
+  <h1>I nostri corsi</h1>
+  <p class="intro">Scegli il tuo corso. Per vedere i video ti serve la password che ti ha dato la scuola.</p>
+  <ul class="corsi" id="corsi"></ul>
+</main>
+
+<footer>
+  <img src="logo-nero.jpg" alt="SalsaShaker">
+  <p>Sito fatto da Giovanni, nel modo più carino possibile</p>
+</footer>
+
+<script src="corsi.js"></script>
+<script>
+const ul=document.getElementById("corsi");
+(window.CORSI||[]).forEach(c=>{
+  const li=document.createElement("li"),a=document.createElement("a");
+  a.href="corso.html?c="+encodeURIComponent(c.slug);
+  const t=document.createElement("span"),n=document.createElement("span"),d=document.createElement("span"),v=document.createElement("span");
+  n.className="nome";n.textContent=c.nome;d.className="desc";d.textContent=c.descrizione||"";
+  t.append(n,d);v.className="vai";v.textContent="Apri";
+  a.append(t,v);li.appendChild(a);ul.appendChild(li);
+});
+</script>
+</body>
+</html>
